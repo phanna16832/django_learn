@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Material Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<body>
+    <nav>
+        <ul>
+            <li>
+                <a href="#">
+                    <span class="material-symbols-outlined">home</span> 
+                    ទំព័រដើម
+                </a>
+            </li>
+            <li><a href="#">ព័ត៌មានលម្អិត</a></li>
+            <li><a href="#">ទំនាក់ទំនងមកយើង</a></li>
+            <li><a href="#section1">សារបង្វិលទឹកប្រាក់</a></li>
+        </ul>
+    </nav>
+    <article>
+       <table id="table">
+            <tr>
+                <th>តម្លៃទំនិញនៅក្នុងប្រទេសចិន (rmb)</th>
+                <th>តម្លៃទំនិញនៅក្នុងអេប</th>
+                <th>តម្លៃទំនីញជា($)</th>
+                <th>អាត្រាប្តូរប្រាក់</th>
+                <th>ថ្លៃទំនិញត្រូវកែ</th>
+            </tr>
+            <tr>
+                <td><input type="text" name="price" id="price" placeholder="តម្លៃទំនិញជា rmb"></td>
+                <td><input type="number" name="price1" id="price1" placeholder="តម្លៃទំនិញជា ($)"></td>
+                <td id="rate"></td>
+                <td id="result"></td>
+                <td id="price2"></td>
+            </tr>
+            <tr>
+                <td><button type="button" onclick="cal()" id="btn">
+                    <span class="material-symbols-outlined">
+                        calculate
+                        </span>
+                        គណនា</button></td>
+                    <td><button type="reset">ជម្រះ</button></td>
+                    <td><button type="button" onclick="copyText('price2')">ចម្លង</button></td>
+            </tr>
+        </table>
+    </article>
+    <main id="section1">
+        <h4>Save replies សម្រាប់ refund</h4>
+        <p id="refund1">
+            សួស្តីបងចំពោះទំនិញនេះដោយសារខាងហាងថាទំនិញនេះអស់ស្តុក ដូចនេះខាងប្អូនបានធ្វើការrefund ជូនបង រួចរាល់ហើយបង ចំពោះការrefund  ទឹកប្រាក់ត្រលប់ទៅវិញដែរខាងប្អូននឹងrufundជូនបងល្ញាចនេះនៅពេលខាងប្អូនបិទបញ្ជារួចបង
+        <p>
+            <button onclick="copyText('refund1')">ចម្លង</button> <br><br>
+            សួស្តីបងចំពោះទំនិញនេះដោយសារខាងហាងថាទំនិញនេះអស់ស្តុក ដូចនេះខាងប្អូនបានធ្វើការrefund ជូនបង រួចរាល់ហើយបង តើបងចង់ប្តូរទៅជាម៉ូតទំនិញផ្សេងឬបងចង់refundជាទឹកប្រាក់ត្រលប់ទៅវិញដែរបង?  
+        </p id="refund2">
+        <button onclick="copyText('refund2')">ចម្លង</button>
+    </main>
+
+<script src="script.js"></script>    
+</body>
+</html>

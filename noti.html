@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notification Example</title>
+  <link rel="shortcut icon" href="icon-img/notification.png" type="image/x-icon">
+</head>
+<body>
+  <h1>Click the button to receive a notification</h1>
+  <button id="notifyBtn">Show Notification</button>
+
+  <script>
+    const button = document.querySelector("#notifyBtn");
+
+    button.addEventListener("click", () => {
+      // Check for Notification API support
+      if (!("Notification" in window)) {
+        alert("This browser does not support desktop notification");
+        return;
+      }
+
+      // Request notification permission
+      Notification.requestPermission().then(permission => {
+        if (permission === "granted") {
+          // Create notification
+          const notification = new Notification("អ្នកបានទទួលសារជូនដំណឹង", {
+            body: "នេះជាសារជូនដំណឹងសាកល្បង .",
+            data: { hello: "world" },
+            icon: "icon-img/notification.png", // Ensure this path is correct
+            tag: "message-1",  // Helps in managing multiple notifications
+            renotify: true,    // Replaces the notification with the same tag
+            //badge: "icon-img/badge.png",  // Badge icon (optional for Android-like behavior)
+            requireInteraction: true, // Keeps the notification on screen until user interacts
+            vibrate: [200, 100, 200],  // Vibration pattern (optional, for mobile)
+          });
+
+          // Handle notification click event
+          notification.addEventListener("click", () => {
+            window.focus();
+            alert("Notification clicked!");
+          });
+
+          // Handle notification error event
+          notification.addEventListener("error", () => {
+            alert("Error displaying notification");
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

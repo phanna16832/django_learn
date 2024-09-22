@@ -78,3 +78,33 @@ function copyText(elementId) {
     document.execCommand("copy");
     document.body.removeChild(textarea);
 }
+
+
+//notification
+ // Request notification permission
+ Notification.requestPermission().then(permission => {
+    if (permission === "granted") {
+      // Create notification
+      const notification = new Notification("អ្នកបានទទួលសារជូនដំណឹង", {
+        body: "នេះជាសារជូនដំណឹងសាកល្បង .",
+        data: { hello: "world" },
+        icon: "icon-img/notification.png", // Ensure this path is correct
+        tag: "message-1",  // Helps in managing multiple notifications
+        renotify: true,    // Replaces the notification with the same tag
+        //badge: "icon-img/badge.png",  // Badge icon (optional for Android-like behavior)
+        requireInteraction: true, // Keeps the notification on screen until user interacts
+        //vibrate: [200, 100, 200],  // Vibration pattern (optional, for mobile)
+      });
+
+      // Handle notification click event
+      notification.addEventListener("click", () => {
+        window.focus();
+        alert("Notification clicked!");
+      });
+
+      // Handle notification error event
+      notification.addEventListener("error", () => {
+        alert("Error displaying notification");
+      });
+    }
+  });

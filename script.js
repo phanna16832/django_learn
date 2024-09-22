@@ -52,6 +52,22 @@ function cal() {
     }
 }
 
+//sum calculator
+
+sumCal = () => {
+    // Convert empty inputs to 0
+    var num = parseInt(document.getElementById("num").value) || 0;
+    var num1 = parseInt(document.getElementById("num1").value) || 0;
+    var num2 = parseInt(document.getElementById("num2").value) || 0;
+    var num3 = parseInt(document.getElementById("num3").value) || 0;
+    
+    let sum = document.getElementById("sum");
+
+    // Calculate and display the sum
+    const s = num + num1 + num2 + num3;
+    sum.textContent = s;
+}
+
 //copy genral function
 function copyText(elementId) {
     var text = document.getElementById(elementId).textContent;

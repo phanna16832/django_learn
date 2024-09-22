@@ -31,14 +31,23 @@
             <li><a href="#section1">សារបង្វិលទឹកប្រាក់</a></li>
         </ul>
     </nav>
-    <article>
+    <header>
+        <input type="search" name="search" id="search">
+        <button type="submit">
+            <span class="material-symbols-outlined">
+                search
+                </span>
+            ស្វែងរក
+        </button>
+    </header>
+    <main>
         <table id="table">
             <tr>
                 <th>តម្លៃទំនិញនៅក្នុងប្រទេសចិន (rmb)</th>
                 <th>តម្លៃទំនិញនៅក្នុងអេប</th>
-                <th>តម្លៃទំនីញជា($)</th>
                 <th>អាត្រាប្តូរប្រាក់</th>
-                <th>ថ្លៃទំនិញត្រូវកែ</th>
+                <th>តម្លៃទំនីញជា($)</th>
+                <th>ថ្លៃទំនិញត្រូវកែ</main>
             </tr>
             <tr>
                 <td><input type="text" name="price" id="price" placeholder="តម្លៃទំនិញជា rmb"></td>
@@ -53,11 +62,27 @@
                             calculate
                         </span>
                         គណនា</button></td>
-                <td><button type="reset">ជម្រះ</button></td>
                 <td><button type="button" onclick="copyText('price2')">ចម្លង</button></td>
+                <td><button type="reset">ជម្រះ</button></td>
             </tr>
         </table>
-    </article>
+    </main>
+    <!--calculator-->
+    <main>
+        <div>
+            <label for="">តម្លៃទំនិញ១ :</label>
+            <input type="number" name="number" id="num" placeholder="Number 1"><br>
+            <label for="">តម្លៃទំនិញ២</ label>
+            <input type="number" name="number" id="num1" placeholder="Number 2"><br>
+            <label for="">តម្លៃទំនិញ៣ </label>
+            <input type="number" name="number" id="num2" placeholder="Number 3"><br>
+            <label for="">តម្លៃទំនិញ៤ </label>
+            <input type="number" name="number" id="num3" placeholder="Number 4"><br>
+            <button onclick="sumCal()">គណនា</button><br>
+            <span id="sum"></span>
+        </div>
+    </main>
+
     <main id="section1">
         <h4>Save replies សម្រាប់ refund</h4>
         <p id="refund1">
@@ -70,6 +95,7 @@
         </p id="refund2">
         <button onclick="copyText('refund2')">ចម្លង</button>
     </main>
+    
 
     <script src="script.js"></script>
 </body>

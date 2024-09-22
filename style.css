@@ -35,7 +35,31 @@ li a:hover {
   color: red;
   text-decoration-line: underline;
 }
+/*header*/
+header {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center; /* Aligns items horizontally */
+  align-items: center;     /* Aligns items vertically */
+}
+header input[type="search"]{
+  text-align: center;
+}
+header button{
+  margin-left: 20px;
+  background-color: red;
+  width: 20;
+  border:none;
+  border-radius: 4px 3px;
+  color: white;
 
+}
+header button span{
+  align-items: center;
+  text-align: center;
+  width:25%;
+  color: white
+}
 /* Table */
 table {
   width: 100%;
@@ -49,6 +73,13 @@ table th, table td {
   border: 1px solid limegreen;
   padding: 12px 8px;
   font-size: 14px;
+}
+table th input, table td input {
+  text-align: center;
+  color: red;
+}
+::placeholder{
+  color: lime;
 }
 
 table th {
@@ -75,9 +106,18 @@ table tr button:hover {
 main button{
   border: none;
   background-color: red;
-  color: white
+  color: white;
+  font-size: 12px;
+  border-radius: 4px;
 }
-
+::selection{
+  background-color: cyan;
+  color: black;
+}
+#section1 h4{
+  font-size: 14px;
+  color: blue;
+}
 /* Responsive: Adjust layout for smaller screens */
 @media (max-width: 768px) {
   ul {

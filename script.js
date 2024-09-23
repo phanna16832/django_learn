@@ -69,6 +69,8 @@ sumCal = () => {
 }
 
 //copy genral function
+let copyAlert = document.getElementById('copyAlert');
+
 function copyText(elementId) {
     var text = document.getElementById(elementId).textContent;
     var textarea = document.createElement("textarea");
@@ -77,34 +79,13 @@ function copyText(elementId) {
     textarea.select();
     document.execCommand("copy");
     document.body.removeChild(textarea);
+
+    // Show the alert
+    copyAlert.textContent = "សារត្រូវបានចម្លង";
+    copyAlert.style.display = "block"; // Make it visible
+
+    // Hide the alert after 3 minutes (180000 milliseconds)
+    setTimeout(function () {
+        copyAlert.style.display = "none";
+    }, 5000); // 3 minutes = 180,000 milliseconds
 }
-
-
-//notification
- // Request notification permission
-/* Notification.requestPermission().then(permission => {
-    if (permission === "granted") {
-      // Create notification
-      const notification = new Notification("អ្នកបានទទួលសារជូនដំណឹង", {
-        body: "នេះជាសារជូនដំណឹងសាកល្បង .",
-        data: { hello: "world" },
-        icon: "icon-img/notification.png", // Ensure this path is correct
-        tag: "message-1",  // Helps in managing multiple notifications
-        renotify: true,    // Replaces the notification with the same tag
-        //badge: "icon-img/badge.png",  // Badge icon (optional for Android-like behavior)
-        requireInteraction: true, // Keeps the notification on screen until user interacts
-        //vibrate: [200, 100, 200],  // Vibration pattern (optional, for mobile)
-      });
-
-      // Handle notification click event
-      notification.addEventListener("click", () => {
-        window.focus();
-        alert("Notification clicked!");
-      });
-
-      // Handle notification error event
-      notification.addEventListener("error", () => {
-        alert("Error displaying notification");
-      });
-    }
-  });*/

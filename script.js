@@ -82,7 +82,7 @@ function copyText(elementId) {
 
 //notification
  // Request notification permission
- Notification.requestPermission().then(permission => {
+/* Notification.requestPermission().then(permission => {
     if (permission === "granted") {
       // Create notification
       const notification = new Notification("អ្នកបានទទួលសារជូនដំណឹង", {
@@ -107,4 +107,4 @@ function copyText(elementId) {
         alert("Error displaying notification");
       });
     }
-  });
+  });*/

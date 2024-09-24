@@ -51,9 +51,24 @@ function cal() {
         p2.innerText = addiction;
     }
 }
+//clear input text
+function clearTextInputs() {
+    // Clear only the text input fields
+    document.getElementById('price').value = '';  // Clear the RMB price input
+    document.getElementById('price1').value = ''; // Clear the USD price input
+}
 
-//sum calculator
+// Add event listener for the Delete key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Delete') { // Check if the pressed key is Delete
+        clearTextInputs(); // Call the function to clear text inputs
+    }
+});
 
+// Add event listener to the reset button
+document.querySelector('button[type="reset"]').addEventListener('click', clearTextInputs);
+
+//cal
 sumCal = () => {
     // Convert empty inputs to 0
     var num = parseInt(document.getElementById("num").value) || 0;
@@ -68,8 +83,11 @@ sumCal = () => {
     sum.textContent = s;
 }
 
-//copy genral function
-let copyAlert = document.getElementById('copyAlert');
+//general copy
+document.addEventListener("DOMContentLoaded", function () {
+    let copyAlert = document.getElementById('copyAlert');
+    copyAlert.style.display = 'none';  // Ensure it's hidden on page load
+});
 
 function copyText(elementId) {
     var text = document.getElementById(elementId).textContent;
@@ -80,12 +98,13 @@ function copyText(elementId) {
     document.execCommand("copy");
     document.body.removeChild(textarea);
 
-    // Show the alert
-    copyAlert.textContent = "សារត្រូវបានចម្លង";
+    // Show the alert and dynamically update the message and icon
+    var alertMessage = "អក្សរត្រូវបានចម្លង | 字已复制"; // Text in Khmer and Chinese
+    copyAlert.innerHTML = '<span class="material-symbols-outlined">check_circle</span> ' + alertMessage;
     copyAlert.style.display = "block"; // Make it visible
 
-    // Hide the alert after 3 minutes (180000 milliseconds)
+    // Hide the alert after 5 seconds
     setTimeout(function () {
         copyAlert.style.display = "none";
-    }, 5000); // 3 minutes = 180,000 milliseconds
+    }, 5000); // 5 seconds = 5000 milliseconds
 }

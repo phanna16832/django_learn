@@ -68,11 +68,26 @@
                         គណនា
                     </button>
                 </td>
-                <td><button type="button" onclick="copyText('reset')">ចម្លង​តម្លៃទំនិញ </button></td>
-                <td><button type="button" onclick="copyText('price2')">ចម្លង</button></td>
-                <td><button type="reset">ជម្រះ</button></td>
+                <td>
+                    <button type="button" onclick="copyText('result')">
+                        <span class="material-symbols-outlined">copy_all</span>
+                        ចម្លង​តម្លៃទំនិញ 
+                    </button>
+                </td>
+                <td>
+                    <button type="button" onclick="copyText('price2')">
+                        <span class="material-symbols-outlined">copy_all</span>
+                        ចម្លង
+                    </button>
+                </td>
+                <td colspan="2">
+                    <button type="reset">
+                        <span class="material-symbols-outlined">delete</span>
+                        ជម្រះ
+                    </button>
+                </td>
             </tr>
-        </table>
+        </table>        
     </main>
 
     <!--calculator-->
@@ -107,7 +122,11 @@
     </main>
 
     <aside>
-        <h4>xianyu Information</h4>
+        <h4>
+            <img src="/icon-img/xianyu.ico" alt="xianyu app">
+            xianyu Information
+
+        </h4>
         <pre id="appXianyu">
             👉🏼👉🏼ខាងប្អូនសូមបញ្ជាក់បន្តិចដោយសារលីងដែលបងផ្ញើមកគឺយកចេញអេប 闲鱼ដែលsជាអេបលក់ទំនិញមួយទឹកពីប្រទេសចិន
 
@@ -123,7 +142,12 @@
     </aside>
 
 
-    <span id="copyAlert">សារត្រូវបានចម្លង</span>
+    <div id="copyAlert">
+        <span class="material-symbols-outlined">
+            check_circle
+            </span>
+        អក្សរត្រូវបានចម្លង | 字已复制
+    </div>
     <script src="script.js"></script></body>
 
 </html>

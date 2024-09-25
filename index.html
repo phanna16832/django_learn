@@ -104,6 +104,20 @@
             <button onclick="sumCal()">គណនា</button><br>
             <span id="sum"></span>
         </div>
+        <div class="calculae2">
+            <label for="price">តម្លៃទំនិញ: </label>
+            <input type="number" name="pice" id="pice">
+            <select name="rate" id="rate">
+                <option value="6">6</option>
+                <option value="6.1">6.1</option>
+                <option value="6.2">6.2</option>
+                <option value="6.3">6.3</option>
+                <option value="6.4">6.4</option>
+                <option value="6.5">6.5</option>
+            </select>
+            <span id="result"></span>
+            <button onclick=""></button>
+        </div>
     </main>
 
     <main id="section1">
@@ -123,7 +137,7 @@
 
     <aside>
         <h4>
-            <img src="/icon-img/xianyu.ico" alt="xianyu app">
+            <img src="/icon-img/xianyu.ico" alt="xianyu app" style="border-radius: 10px; align-items: center;">
             xianyu Information
 
         </h4>
@@ -138,7 +152,10 @@
             translateបានប៉ុន្តែបងចង់ឱ្យខាងប្អូនសួរព័ត៌មានលម្អិតបន្ថែមក៏បានដូចគ្នា ប៉ុន្តែខាងហាងអាចនឹងឆ្លើយតបយឺត
             ឬមិនឆ្លើយតប(ហាងមួយបានបញ្ជាក់ព័ត៌មាននៅកន្លែងផ្ទាំងរូបភាពរួចរាល់ដែលខាងហាងនឹងមិនតបសារយើងទៀតទេ)
         </pre>
-        <button onclick="copyText('appXianyu')">ចម្លង</button>
+        <button onclick="copyText('appXianyu')">
+            <i class="fa-regular fa-copy fa-sm" style="color: #74C0FC;"></i>
+            ចម្លង
+        </button>
     </aside>
 
 
@@ -148,6 +165,13 @@
             </span>
         អក្សរត្រូវបានចម្លង | 字已复制
     </div>
+    <footer>
+        <p>វេបសាយនេះបង្កើតឡើងក្នុងគោលបំណងសាកល្បងនៃការសរសេរកូដតែប៉ុណ្ណោះ​ក្នុងករណីមានបញ្ហាណាមួយសូមទាក
+            ទងទៅកាន់់
+            <i class="fa-brands fa-telegram" style="color: #74C0FC;"></i>        </p>
+    </footer>
     <script src="script.js"></script></body>
+    <!--font awesome icon-->
+    <script src="https://kit.fontawesome.com/54d16fb515.js" crossorigin="anonymous"></script>
 
 </html>

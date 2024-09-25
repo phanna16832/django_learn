@@ -6,6 +6,13 @@
 *, button{
   font-family:  "Siemreap";
 }
+button{
+  border: none;
+  border-radius: 8pxx  ;
+  color:white;
+  background-color:#f50746 ;
+
+}
 
 /* Navigation Bar */
 ul {

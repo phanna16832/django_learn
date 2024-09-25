@@ -1,6 +1,7 @@
-window.onload = function() {
+window.onload = function () {
     const rate = 6.2;
     document.getElementById('rate').innerHTML = rate;
+    document.getElementById("copyAlert").style.display = "none";
 
     // Add key event listeners for inputs
     document.getElementById('price').addEventListener('keydown', focusNextInput);
@@ -9,102 +10,92 @@ window.onload = function() {
 }
 
 function focusNextInput(event) {
-    // If Enter key is pressed, move to the next input or button
     if (event.key === "Enter") {
-        event.preventDefault(); // Prevent default action of submitting form
+        event.preventDefault();
         if (event.target.id === 'price') {
-            document.getElementById('price1').focus(); // Move focus to the next input
+            document.getElementById('price1').focus();
         } else if (event.target.id === 'price1') {
-            document.getElementById('btn').focus(); // Move focus to the button
-            triggerCalculation(event); // Optionally trigger calculation
+            document.getElementById('btn').focus();
+            triggerCalculation(event);
         }
     }
 }
 
 function triggerCalculation(event) {
-    // If Enter key is pressed, trigger the calculation
     if (event.key === "Enter") {
-        event.preventDefault(); // Prevent default action of submitting form
-        cal(); // Trigger the calculation function
+        event.preventDefault();
+        cal();
     }
 }
 
 function cal() {
     var p = document.getElementById('price').value;
     var p1 = document.getElementById('price1').value;
-    var r = document.getElementById('rate').innerHTML; // Get the rate as a string
+    var r = parseFloat(document.getElementById('rate').innerHTML);
     var r0 = document.getElementById('result');
-    var p2 = document.getElementById('price2'); // p2 is a <td>, so use innerHTML, not value
-    
-    // Convert r to a number
-    r = parseFloat(r);
-    
-    // Check if the input values are numbers
-    if (isNaN(p) || isNaN(r) || p === "" || r === "") {
-        r0.innerHTML = 'តម្លៃទំនិញបំពេញមិនត្រឹមត្រូវ'; // "Invalid price"
-        r0.style.color = '#ff0022'; // Red color for error
+    var p2 = document.getElementById('price2');
+
+    if (isNaN(p) || p === "") {
+        r0.innerHTML = 'តម្លៃទំនិញបំពេញមិនត្រឹមត្រូវ';
+        r0.style.color = '#ff0022';
     } else {
         const convertprice = (p / r).toFixed(2);
         r0.innerHTML = convertprice;
-        r0.style.color = '#09ff00'; // Green color for valid result
+        r0.style.color = '#09ff00';
         const addiction = (convertprice - p1).toFixed(2);
         p2.innerText = addiction;
     }
 }
-//clear input text
+
 function clearTextInputs() {
-    // Clear only the text input fields
-    document.getElementById('price').value = '';  // Clear the RMB price input
-    document.getElementById('price1').value = ''; // Clear the USD price input
+    document.getElementById('price').value = '';
+    document.getElementById('price1').value = '';
 }
 
-// Add event listener for the Delete key
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'Delete') { // Check if the pressed key is Delete
-        clearTextInputs(); // Call the function to clear text inputs
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'Delete') {
+        clearTextInputs();
     }
 });
 
-// Add event listener to the reset button
-document.querySelector('button[type="reset"]').addEventListener('click', clearTextInputs);
-
-//cal
-sumCal = () => {
-    // Convert empty inputs to 0
-    var num = parseInt(document.getElementById("num").value) || 0;
-    var num1 = parseInt(document.getElementById("num1").value) || 0;
-    var num2 = parseInt(document.getElementById("num2").value) || 0;
-    var num3 = parseInt(document.getElementById("num3").value) || 0;
-    
-    let sum = document.getElementById("sum");
-
-    // Calculate and display the sum
-    const s = num + num1 + num2 + num3;
-    sum.textContent = s;
+function copyText(elementId) {
+    var text = document.getElementById(elementId).innerText;
+    navigator.clipboard.writeText(text).then(function () {
+        showAlert('អក្សរត្រូវបានចម្លង | 字已复制');
+    }).catch(function (error) {
+        showAlert('ការចម្លងបរាជ័យ | 复制失败');
+    });
 }
 
-//general copy
-document.addEventListener("DOMContentLoaded", function () {
-    let copyAlert = document.getElementById('copyAlert');
-    copyAlert.style.display = 'none';  // Ensure it's hidden on page load
-});
-
-function copyText(elementId) {
-    var text = document.getElementById(elementId).textContent;
-    var textarea = document.createElement("textarea");
-    textarea.value = text;
-    document.body.appendChild(textarea);
-    textarea.select();
-    document.execCommand("copy");
-    document.body.removeChild(textarea);
-
-    // Show the alert and dynamically update the message and icon
-    var alertMessage = "អក្សរត្រូវបានចម្លង | 字已复制"; // Text in Khmer and Chinese
-    copyAlert.innerHTML = '<span class="material-symbols-outlined">check_circle</span> ' + alertMessage;
-    copyAlert.style.display = "block"; // Make it visible
-
-    // Hide the alert after 5 seconds
+function showAlert(message) {
+    var copyAlert = document.getElementById('copyAlert');
+    copyAlert.innerHTML = `<span class="material-symbols-outlined">check_circle</span> ${message}`;
+    copyAlert.style.display = 'block';
     setTimeout(function () {
-        copyAlert.style.display = "none";
-    }, 5000); // 5 seconds = 5000 milliseconds
+        copyAlert.style.display = 'none';
+    }, 5000);  // Hide after 5 seconds
+}
+
+function cal2() {
+    var price = document.getElementById("p").value;
+    var rate = document.getElementById("r0").value;
+    var resultElement = document.getElementById("r");
+
+    if (isNaN(price) || price==="") {
+        resultElement.innerHTML = "តម្លៃបំពេញមិនត្រឹមត្រូវ";
+        resultElement.style.color = "#fc0317"
+    } else {
+        var calc = (price / rate).toFixed(2);
+        resultElement.innerText = `សួស្តីបង សរុបហាងទំនិញទាំងអស់ ${price} ចែកនឹង ${rate} = ${calc} ***បញ្ជាក់: ចំពោះទំនិញទិញក្នុងហាងតែមួយ ប្រសិនខាងហាងបំបែកកញ្ចប់ទំនិញ ខាងប្អូននឹងរាប់កញ្ចប់ទំនិញគិតថ្លៃដឹកតាមចំនួនកញ្ចប់ទំនិញដូចគ្នា សំរាប់កញ្ចប់ដែលក្រោម1គីឡូ ខាងប្អូនគិតមួយគីឡូ លើស1គីឡូយក ទំហំនិង ទម្ងង់ប្រៀបធៀបគ្នាមួយណាធំជាងយកមួយនឹងជាគោលគិតថ្លៃដឹកជញ្ចូន`;
+
+    }
+}
+
+function sumCal() {
+    var n1 = document.getElementById('num').value;
+    var n2 = document.getElementById('num1').value;
+    var n3 = document.getElementById('num2').value;
+    var n4 = document.getElementById('num3').value;
+    var total = parseFloat(n1) + parseFloat(n2) + parseFloat(n3) + parseFloat(n4);
+    document.getElementById('sum').innerHTML = "តម្លៃសរុបគឺ: $" + total.toFixed(2);
 }

@@ -14,7 +14,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Siemreap&display=swap" rel="stylesheet">
-
+        <!--font awesome icon-->
+        <script src="https://kit.fontawesome.com/54d16fb515.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -29,6 +30,12 @@
             <li><a href="#">ព័ត៌មានលម្អិត</a></li>
             <li><a href="#">ទំនាក់ទំនងមកយើង</a></li>
             <li><a href="#section1">សារបង្វិលទឹកប្រាក់</a></li>
+            <li>
+                <a href="todo.html">
+                    <i class="fa-sharp-duotone fa-solid fa-list" style="color: #fcba03;"></i>
+                    កំណត់ត្រាប្រចំាថ្ងៃ
+                </a>
+            </li>
         </ul>
     </nav>
 
@@ -39,9 +46,7 @@
             ស្វែងរក
         </button>
         <div>
-            <button type="button" id="notifyBtn">
-                សារជូនដំណឹង
-            </button>
+            <button type="button" id="notifyBtn">សារជូនដំណឹង</button>
         </div>
     </header>
 
@@ -71,7 +76,7 @@
                 <td>
                     <button type="button" onclick="copyText('result')">
                         <span class="material-symbols-outlined">copy_all</span>
-                        ចម្លង​តម្លៃទំនិញ 
+                        ចម្លង​តម្លៃទំនិញ
                     </button>
                 </td>
                 <td>
@@ -87,12 +92,11 @@
                     </button>
                 </td>
             </tr>
-        </table>        
+        </table>
     </main>
 
-    <!--calculator-->
-    <main>
-        <div>
+    <main class="container">
+        <div class="calculae1">
             <label>តម្លៃទំនិញ១ :</label>
             <input type="number" name="number" id="num" placeholder="Number 1"><br>
             <label>តម្លៃទំនិញ២:</label>
@@ -106,8 +110,8 @@
         </div>
         <div class="calculae2">
             <label for="price">តម្លៃទំនិញ: </label>
-            <input type="number" name="pice" id="pice">
-            <select name="rate" id="rate">
+            <input type="number" name="price" id="p" style="width: 80px;">
+            <select name="r0" id="r0">
                 <option value="6">6</option>
                 <option value="6.1">6.1</option>
                 <option value="6.2">6.2</option>
@@ -115,8 +119,8 @@
                 <option value="6.4">6.4</option>
                 <option value="6.5">6.5</option>
             </select>
-            <span id="result"></span>
-            <button onclick=""></button>
+            <span id="r"></span>
+            <button onclick="cal2()">គណនា</button>  
         </div>
     </main>
 
@@ -139,7 +143,6 @@
         <h4>
             <img src="/icon-img/xianyu.ico" alt="xianyu app" style="border-radius: 10px; align-items: center;">
             xianyu Information
-
         </h4>
         <pre id="appXianyu">
             👉🏼👉🏼ខាងប្អូនសូមបញ្ជាក់បន្តិចដោយសារលីងដែលបងផ្ញើមកគឺយកចេញអេប 闲鱼ដែលsជាអេបលក់ទំនិញមួយទឹកពីប្រទេសចិន
@@ -151,6 +154,7 @@
             +ក្នុងករណីបងចង់ច្បាស់ពីទំនិញដែលបងបញ្ជាទិញខាងប្អូនសូមរំខានបងជួយធ្វើការscreenshortព័ត៌មានលម្អិតដែលខាងហាងបានបញ្ជាក់ទៅtranslateដោយប្រើgoogle
             translateបានប៉ុន្តែបងចង់ឱ្យខាងប្អូនសួរព័ត៌មានលម្អិតបន្ថែមក៏បានដូចគ្នា ប៉ុន្តែខាងហាងអាចនឹងឆ្លើយតបយឺត
             ឬមិនឆ្លើយតប(ហាងមួយបានបញ្ជាក់ព័ត៌មាននៅកន្លែងផ្ទាំងរូបភាពរួចរាល់ដែលខាងហាងនឹងមិនតបសារយើងទៀតទេ)
+        
         </pre>
         <button onclick="copyText('appXianyu')">
             <i class="fa-regular fa-copy fa-sm" style="color: #74C0FC;"></i>
@@ -158,20 +162,22 @@
         </button>
     </aside>
 
-
     <div id="copyAlert">
-        <span class="material-symbols-outlined">
-            check_circle
-            </span>
+        <span class="material-symbols-outlined">check_circle</span>
         អក្សរត្រូវបានចម្លង | 字已复制
     </div>
+    
     <footer>
-        <p>វេបសាយនេះបង្កើតឡើងក្នុងគោលបំណងសាកល្បងនៃការសរសេរកូដតែប៉ុណ្ណោះ​ក្នុងករណីមានបញ្ហាណាមួយសូមទាក
-            ទងទៅកាន់់
-            <i class="fa-brands fa-telegram" style="color: #74C0FC;"></i>        </p>
+        <p>
+            វេបសាយនេះបង្កើតឡើងក្នុងគោលបំណងសាកល្បងនៃការសរសេរកូដតែប៉ុណ្ណោះ​ក្នុងករណីមានបញ្ហាណាមួយសូមទាក ទងទៅកាន់់ 
+            <a href="" style="text-decoration: none;">
+                <i class="fa-brands fa-telegram" style="color: #74C0FC;"></i>
+            </a>
+                        
+        </p>
     </footer>
-    <script src="script.js"></script></body>
-    <!--font awesome icon-->
-    <script src="https://kit.fontawesome.com/54d16fb515.js" crossorigin="anonymous"></script>
+
+    <script src="script.js"></script>
+</body>
 
 </html>

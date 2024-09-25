@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="todo.css"> <!-- Optional CSS file -->
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">ទំព័រដើម</a></li>
+                <li><a href="#">អំពី</a></li>
+                <li><a href="#">ទំនាក់ទំនង</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <h1>My To-Do List</h1>
+        <div action="" method="POST">
+            <label for="list">List:</label>
+            <input type="text" name="list" id="list" required><br><br>
+            <label for="date">Date of List:</label>
+            <input type="date" name="date" id="date" required><br><br>
+            <input type="checkbox" name="check" id="check">
+            <span>Set schedules</span><br>
+            <button type="submit">Submit</button>
+        </div>
+        
+        <div>
+            <button id="addTodoButton">Add Another To-Do List</button>
+        </div>
+    </main>
+    
+    <script>
+        // Optional: Add JavaScript to handle form submissions or adding new to-do items
+        document.getElementById('addTodoButton').addEventListener('click', function() {
+            // Code to add another to-do item can go here
+            alert('Adding another to-do item!');
+        });
+    </script>
+</body>
+</html>

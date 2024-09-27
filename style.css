@@ -131,7 +131,7 @@ main button {
   flex: 1;                     /* Makes each section flexible */
   max-width: 48%;             /* Ensures sections do not exceed 48% width */
   margin: 10px;               /* Adds space between the sections */
-  padding: 10px;              /* Adds padding inside each section */
+  padding: 4px;              /* Adds padding inside each section */
   border: 1px solid #ccc;     /* Adds a border to visually separate the sections */
   border-radius: 8px;         /* Rounds the corners of the sections */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */

@@ -105,7 +105,12 @@
             <input type="number" name="number" id="num2" placeholder="Number 3"><br>
             <label>តម្លៃទំនិញ៤:</label>
             <input type="number" name="number" id="num3" placeholder="Number 4"><br>
-            <button onclick="sumCal()">គណនា</button><br>
+            <button onclick="sumCal()" style="margin-right: 100px;">គណនា</button>
+            <button onclick="copyText('sum')">
+                <i class="fa-regular fa-copy fa-sm" style="color: #74C0FC;"></i>
+                ចម្លង
+            </button>
+    
             <span id="sum"></span>
         </div>
         <div class="calculae2">
@@ -121,6 +126,11 @@
             </select>
             <span id="r"></span>
             <button onclick="cal2()">គណនា</button>  
+            <button onclick="copyText('r')">
+                <i class="fa-regular fa-copy fa-sm" style="color: #74C0FC;"></i>
+                ចម្លង
+            </button>
+    
         </div>
     </main>
 

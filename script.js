@@ -92,10 +92,15 @@ function cal2() {
 }
 
 function sumCal() {
-    var n1 = document.getElementById('num').value;
-    var n2 = document.getElementById('num1').value;
-    var n3 = document.getElementById('num2').value;
-    var n4 = document.getElementById('num3').value;
-    var total = parseFloat(n1) + parseFloat(n2) + parseFloat(n3) + parseFloat(n4);
-    document.getElementById('sum').innerHTML = "តម្លៃសរុបគឺ: $" + total.toFixed(2);
+    // Get the input values and replace blank or invalid entries with 0
+    var n1 = parseFloat(document.getElementById('num').value) || 0;
+    var n2 = parseFloat(document.getElementById('num1').value) || 0;
+    var n3 = parseFloat(document.getElementById('num2').value) || 0;
+    var n4 = parseFloat(document.getElementById('num3').value) || 0;
+
+    // Calculate the total
+    var total = n1 + n2 + n3 + n4;
+
+    // Display the total with 2 decimal places
+    document.getElementById('sum').innerHTML = total.toFixed(2);
 }

@@ -33,6 +33,12 @@
             padding: 20px;
             border-radius: 5px;
         }
+        main {
+            color: lime;
+        }
+        main h6 span{
+            color: red;
+        }
         .todo-form.visible, .edit-form.visible {
             display: block;
         }
@@ -89,6 +95,14 @@
             <li><a href="#notifications">Notifications</a></li>
         </ul>
     </nav>
+    <main>
+        <div>
+            <h6>
+                <span id ="greeting"></span>
+                admin ! welcome to our demo website
+            </h6>
+        </div>
+    </main>
     <button id="add-task-btn" onclick="toggleForm('todo-form')">Add New Task</button>
     <div class="section">
         <div class="todo-form" id="todo-form">
@@ -113,6 +127,28 @@
         </div>
     </div>
     <script>
+
+         function displayGreeting() {
+        const greetingElement = document.getElementById("greeting");
+        const currentTime = new Date();
+        const hours = currentTime.getHours();
+        let greetingMessage;
+
+        if (hours >= 5 && hours < 12) {
+            greetingMessage = "Good Morning,";
+        } else if (hours >= 12 && hours < 18) {
+            greetingMessage = "Good Afternoon,";
+        } else {
+            greetingMessage = "Good Evening,";
+        }
+
+        greetingElement.textContent = greetingMessage;
+    }
+
+    // Call the function to display the greeting when the page loads
+    displayGreeting();
+
+
         // Check if the browser supports Notification API
         if ("Notification" in window) {
             console.log('Notification API supported');

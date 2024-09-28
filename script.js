@@ -1,3 +1,27 @@
+//greeting func
+function displayGreeting() {
+    const greetingElement = document.getElementById("greeting");
+    const currentTime = new Date();
+    const hours = currentTime.getHours();
+    let greetingMessage;
+
+    if (hours >= 5 && hours < 12) {
+        greetingMessage = "អារុណសួស្តី,";
+    } else if (hours >= 12 && hours < 18) {
+        greetingMessage = "សាយណ្ណសួស្តី,";
+    } else {
+        greetingMessage = "រាត្រីសួស្តី";
+    }
+
+    greetingElement.textContent = greetingMessage;
+}
+
+// Call the function to display the greeting when the page loads
+displayGreeting();
+
+
+
+
 window.onload = function () {
     const rate = 6.2;
     document.getElementById('rate').innerHTML = rate;

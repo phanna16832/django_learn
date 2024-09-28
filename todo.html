@@ -1,229 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do List with Notifications</title>
-    <script src="https://kit.fontawesome.com/54d16fb515.js" crossorigin="anonymous"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 1rem;
-        }
-
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        nav ul li {
-            display: inline;
-            margin-right: 10px;
-        }
-
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-        }
-
-        main {
-            padding: 2rem;
-        }
-
-        .todo-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .todo-item button {
-            margin-left: 10px;
-        }
-
-        .completed {
-            text-decoration: line-through;
-            color: #888;
-        }
-
-        #todoList {
-            margin-top: 20px;
-            border-top: 1px solid #ccc;
-            padding-top: 20px;
-        }
-
-        #notificationStatus {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #f0f0f0;
-            border-radius: 5px;
-        }
-    </style>
+    <title>todo</title>
 </head>
-
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">ទំព័រដើម</a></li>
-                <li><a href="#">អំពី</a></li>
-                <li><a href="#">ទំនាក់ទំនង</a></li>
-                <li><a href="#">See todo list</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <h1>My To-Do List</h1>
-        <form id="todoForm">
-            <label for="list">List:</label>
-            <input type="text" name="list" id="list" required spellcheck="true"><br><br>
-            <label for="date">Date of List:</label>
-            <input type="datetime-local" name="date" id="date" required><br><br>
-            <input type="checkbox" name="check" id="check">
-            <span>Set schedules</span><br>
-            <button type="submit">Submit</button>
-        </form>
-
-        <h2>Todo Items:</h2>
-        <div id="todoList"></div>
-
-        <button id="addTodoButton">
-            <i class="fa-solid fa-plus fa-sm" style="color: #63E6BE;"></i>
-            add other todo list
-        </button>
-
-        <div id="notificationStatus"></div>
-    </main>
-
-    <script>
-        const todoForm = document.getElementById('todoForm');
-        const todoList = document.getElementById('todoList');
-        const addTodoButton = document.getElementById('addTodoButton');
-        const notificationStatus = document.getElementById('notificationStatus');
-
-        let todos = JSON.parse(localStorage.getItem('todos')) || [];
-
-        function renderTodos() {
-            todoList.innerHTML = '';
-            if (todos.length === 0) {
-                todoList.innerHTML = '<p>No todos yet. Add a todo to get started!</p>';
-                return;
-            }
-            todos.forEach((todo, index) => {
-                const todoItem = document.createElement('div');
-                todoItem.classList.add('todo-item');
-                todoItem.innerHTML = `
-                    <input type="checkbox" ${todo.completed ? 'checked' : ''}>
-                    <span class="${todo.completed ? 'completed' : ''}">${todo.text} (${new Date(todo.date).toLocaleString()})</span>
-                    <button class="delete-btn">Delete</button>
-                `;
-
-                const checkbox = todoItem.querySelector('input[type="checkbox"]');
-                checkbox.addEventListener('change', () => toggleTodo(index));
-
-                const deleteBtn = todoItem.querySelector('.delete-btn');
-                deleteBtn.addEventListener('click', () => deleteTodo(index));
-
-                todoList.appendChild(todoItem);
-            });
-            saveTodos();
-        }
-
-        function addTodo(text, date) {
-            todos.push({ text, date, completed: false });
-            renderTodos();
-            scheduleNotification({ text, date });
-        }
-
-        function toggleTodo(index) {
-            todos[index].completed = !todos[index].completed;
-            renderTodos();
-        }
-
-        function deleteTodo(index) {
-            todos.splice(index, 1);
-            renderTodos();
-        }
-
-        function saveTodos() {
-            localStorage.setItem('todos', JSON.stringify(todos));
-        }
-
-        function scheduleNotification(todo) {
-            const interval = setInterval(() => {
-                const now = new Date().getTime();
-                const todoTime = new Date(todo.date).getTime();
-                const timeDiff = todoTime - now;
-
-                console.log(`Checking for notification...`);
-                console.log(`Now: ${new Date(now).toLocaleString()}`);
-                console.log(`Todo Time: ${new Date(todoTime).toLocaleString()}`);
-                console.log(`Time difference: ${timeDiff} ms`);
-
-                if (timeDiff <= 0) {
-                    showNotification(todo.text);
-                    clearInterval(interval); // Stop checking after the notification is shown
-                }
-            }, 1000); // Check every second
-        }
-        function showNotification(todoText) {
-    if ('Notification' in window && Notification.permission === 'granted') {
-        const notificationOptions = {
-            body: `It's time for: ${todoText}`,
-            icon: 'https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg', // You can replace this with any icon URL
-            badge: 'https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg', // Badge icon for Android-like notifications
-            actions: [
-                {
-                    action: 'mark-done', // Custom action
-                    title: 'Mark as Done',
-                    icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Checkmark_green.svg/120px-Checkmark_green.svg.png'
-                },
-                {
-                    action: 'snooze', // Custom action
-                    title: 'Snooze',
-                    icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Clock_font_awesome.svg/120px-Clock_font_awesome.svg.png'
-                }
-            ],
-            timestamp: Date.now(), // Adds the time to the notification
-            requireInteraction: true, // Notification stays on screen until the user interacts
-        };
-
-        // Show the notification with custom options
-        const notification = new Notification('Todo Reminder', notificationOptions);
-
-        // Handle action events when the user clicks on Mark as Done or Snooze
-        notification.addEventListener('notificationclick', (event) => {
-            event.notification.close(); // Close the notification when clicked
-            if (event.action === 'mark-done') {
-                console.log('Marked as Done:', todoText);
-                // Here you could mark the task as completed in your app
-            } else if (event.action === 'snooze') {
-                console.log('Snoozed:', todoText);
-                // Here you could add logic to snooze the task for a later time
-            } else {
-                // If the notification itself is clicked (outside the actions)
-                console.log('Notification clicked without action');
-            }
-        });
-    } else if ('Notification' in window && Notification.permission !== 'denied') {
-        Notification.requestPermission().then(permission => {
-            if (permission === 'granted') {
-                showNotification(todoText); // Re-trigger the notification if permission is granted
-            }
-        });
-    }
-}
-
-    </script>
+    <nav>
+        <ul>
+            <li><a href="index.html">home</a></li>
+            <li><a href=""></a></li>
+            <li><a href="">notification</a></li>
+        </ul>
+    </nav>
+    <div class="section">
+        <div class="todo-form">
+            <label for="todo-name">task name:</label><br>
+            <textarea name="task-name" id="task-name"></textarea><br>
+            <label for="date">date :</label>
+            <input type="datetime-local" name="" id="date"><br>
+            <button type="submit">submit</button>
+        </div>
+        <div>
+            <button>add more to-do</button>
+        </div>
+    </div>
+    
 </body>
-
 </html>

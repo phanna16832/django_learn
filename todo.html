@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,43 +12,66 @@
             margin: 0 auto;
             padding: 20px;
             box-sizing: border-box;
+            background-color: #f4f4f4;
         }
+
         nav ul {
             list-style-type: none;
             padding: 0;
             display: flex;
             justify-content: space-around;
-            background-color: #f0f0f0;
+            background-color: #e0e0e0;
             padding: 10px 0;
         }
+
         nav ul li a {
             text-decoration: none;
             color: #333;
+            transition: color 0.3s;
         }
-        .todo-form, .todo-list, .edit-form {
+
+        nav ul li a:hover {
+            color: #4CAF50;
+        }
+
+        .todo-form,
+        .todo-list,
+        .edit-form {
             margin-top: 20px;
         }
-        .todo-form, .edit-form {
+
+        .todo-form,
+        .edit-form {
             display: none;
             background-color: #f9f9f9;
             padding: 20px;
             border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
         main {
             color: lime;
         }
-        main h6 span{
+
+        main h6 span {
             color: red;
         }
-        .todo-form.visible, .edit-form.visible {
+
+        .todo-form.visible,
+        .edit-form.visible {
             display: block;
         }
-        .todo-form input, .todo-form textarea, .edit-form input, .edit-form textarea {
+
+        .todo-form input,
+        .todo-form textarea,
+        .edit-form input,
+        .edit-form textarea {
             width: 100%;
             padding: 8px;
             margin-bottom: 10px;
             box-sizing: border-box;
         }
+
         .todo-item {
             display: flex;
             justify-content: space-between;
@@ -57,6 +81,7 @@
             margin-bottom: 10px;
             background-color: #fff;
         }
+
         button {
             background-color: #4CAF50;
             color: white;
@@ -65,28 +90,35 @@
             border-radius: 4px;
             cursor: pointer;
             margin-right: 5px;
+            transition: background-color 0.3s;
         }
+
         button:hover {
             background-color: #45a049;
         }
+
         #add-task-btn {
             display: block;
             margin: 20px auto;
         }
+
         @media screen and (max-width: 600px) {
             body {
                 padding: 10px;
             }
+
             .todo-item {
                 flex-direction: column;
                 align-items: flex-start;
             }
+
             .todo-item button {
                 margin-top: 10px;
             }
         }
     </style>
 </head>
+
 <body>
     <nav>
         <ul>
@@ -98,8 +130,8 @@
     <main>
         <div>
             <h6>
-                <span id ="greeting"></span>
-                admin ! welcome to our demo website
+                <span id="greeting"></span>
+                admin! Welcome to our demo website.
             </h6>
         </div>
     </main>
@@ -107,18 +139,18 @@
     <div class="section">
         <div class="todo-form" id="todo-form">
             <h2>Add New Task</h2>
-            <label for="task-name">Task name:</label>
-            <textarea name="task-name" id="task-name"></textarea>
-            <label for="date">Date:</label>
-            <input type="datetime-local" id="date">
+            <label for="task-name" aria-label="Task Name">Task name:</label>
+            <textarea name="task-name" id="task-name" aria-label="Enter Task Name"></textarea>
+            <label for="date" aria-label="Due Date">Date:</label>
+            <input type="datetime-local" id="date" aria-label="Select Due Date">
             <button type="submit" onclick="handleFormSubmit()">Add Task</button>
         </div>
         <div class="edit-form" id="edit-form">
             <h2>Edit Task</h2>
-            <label for="edit-task-name">Task name:</label>
-            <textarea name="edit-task-name" id="edit-task-name"></textarea>
-            <label for="edit-date">Date:</label>
-            <input type="datetime-local" id="edit-date">
+            <label for="edit-task-name" aria-label="Edit Task Name">Task name:</label>
+            <textarea name="edit-task-name" id="edit-task-name" aria-label="Edit Task Name"></textarea>
+            <label for="edit-date" aria-label="Edit Due Date">Date:</label>
+            <input type="datetime-local" id="edit-date" aria-label="Edit Due Date">
             <button type="submit" onclick="handleEditSubmit()">Update Task</button>
         </div>
         <div class="todo-list">
@@ -127,44 +159,35 @@
         </div>
     </div>
     <script>
+        function displayGreeting() {
+            const greetingElement = document.getElementById("greeting");
+            const currentTime = new Date();
+            const hours = currentTime.getHours();
+            let greetingMessage;
 
-         function displayGreeting() {
-        const greetingElement = document.getElementById("greeting");
-        const currentTime = new Date();
-        const hours = currentTime.getHours();
-        let greetingMessage;
+            if (hours >= 5 && hours < 12) {
+                greetingMessage = "Good Morning,";
+            } else if (hours >= 12 && hours < 18) {
+                greetingMessage = "Good Afternoon,";
+            } else {
+                greetingMessage = "Good Evening,";
+            }
 
-        if (hours >= 5 && hours < 12) {
-            greetingMessage = "Good Morning,";
-        } else if (hours >= 12 && hours < 18) {
-            greetingMessage = "Good Afternoon,";
-        } else {
-            greetingMessage = "Good Evening,";
+            greetingElement.textContent = greetingMessage;
         }
 
-        greetingElement.textContent = greetingMessage;
-    }
-
-    // Call the function to display the greeting when the page loads
-    displayGreeting();
-
+        // Call the function to display the greeting when the page loads
+        displayGreeting();
 
         // Check if the browser supports Notification API
         if ("Notification" in window) {
             console.log('Notification API supported');
-           
+
             // Request notification permission if not already granted
             if (Notification.permission !== 'granted' && Notification.permission !== 'denied') {
                 console.log('Requesting notification permission');
                 Notification.requestPermission().then((res) => {
                     console.log(`Notification permission result: ${res}`);
-                    if (res === 'granted') {
-                        console.log('Notification permission granted');
-                    } else if (res === 'denied') {
-                        console.log('Notification access denied');
-                    } else if (res === 'default') {
-                        console.log('Notification permission not given');
-                    }
                 });
             }
         } else {
@@ -211,33 +234,23 @@
                 title = isUpdate ? `Task Updated: ${taskName}` : `New Task Added: ${taskName}`;
                 body = `Due on: ${dateValue}`;
             }
+
             const notification = new Notification(title, {
                 body: body,
-                icon: '/api/placeholder/64/64', // Placeholder icon
+                icon: './icon-img/notification.png', // Placeholder icon
                 tag: isDue ? "due-task" : (isUpdate ? "update-task" : "new-task"),
-                vibrate: [200, 100, 200],
+                vibrate: [200, 100, 200]
             });
+
+            // Play the notification sound
+            const audio = new Audio('./icon-img/notification.mp3');
+            audio.play().catch(error => {
+                console.log('Audio playback failed:', error);
+            });
+
             setTimeout(() => {
                 notification.close();
             }, 5000);
-        }
-
-        // Display tasks in the DOM
-        function displayTasks() {
-            const tasksContainer = document.getElementById('tasks-container');
-            tasksContainer.innerHTML = '';
-            tasks.forEach((task, index) => {
-                const taskElement = document.createElement('div');
-                taskElement.className = 'todo-item';
-                taskElement.innerHTML = `
-                    <span>${task.name} - Due: ${new Date(task.date).toLocaleString()}</span>
-                    <div>
-                        <button onclick="editTask(${index})">Edit</button>
-                        <button onclick="removeTask(${index})">Remove</button>
-                    </div>
-                `;
-                tasksContainer.appendChild(taskElement);
-            });
         }
 
         // Edit a task
@@ -270,7 +283,7 @@
         }
 
         // Load tasks when the page loads
-        window.onload = function() {
+        window.onload = function () {
             loadTasks();
             // Check for due tasks every minute
             setInterval(checkDueTasks, 60000);
@@ -281,71 +294,66 @@
             console.log('Submit button clicked');
             const taskName = document.getElementById('task-name').value;
             const dateValue = document.getElementById('date').value;
-            
+
             if (!taskName || !dateValue) {
-                alert('Please fill in both task name and date.');
+                alert('Please fill in both fields.');
                 return;
             }
 
-            // Add task to the array
-            tasks.push({ name: taskName, date: dateValue, notified: false });
+            const task = {
+                name: taskName,
+                date: dateValue,
+                notified: false // Track if the user has been notified for this task
+            };
 
-            // Save tasks to local storage
+            tasks.push(task);
             saveTasks();
-
-            // Clear form fields
+            displayTasks();
+            notify(taskName, dateValue);
             document.getElementById('task-name').value = '';
             document.getElementById('date').value = '';
-
-            // Hide the form
             toggleForm('todo-form');
-
-            // Update the task list display
-            displayTasks();
-
-            if (Notification.permission === 'granted') {
-                notify(taskName, dateValue);
-            } else if (Notification.permission !== 'denied') {
-                Notification.requestPermission().then((res) => {
-                    if (res === 'granted') {
-                        notify(taskName, dateValue);
-                    }
-                });
-            } else {
-                console.log('Notifications not allowed');
-            }
         }
 
-        // Handle edit form submit
+        // Handle edit submit
         function handleEditSubmit() {
             const taskName = document.getElementById('edit-task-name').value;
             const dateValue = document.getElementById('edit-date').value;
 
             if (!taskName || !dateValue) {
-                alert('Please fill in both task name and date.');
+                alert('Please fill in both fields.');
                 return;
             }
 
-            // Update the task in the array
-            tasks[editingIndex] = { name: taskName, date: dateValue, notified: false };
-
-            // Save tasks to local storage
+            tasks[editingIndex] = {
+                name: taskName,
+                date: dateValue,
+                notified: false // Reset notification status
+            };
             saveTasks();
-
-            // Clear form fields and reset editingIndex
-            document.getElementById('edit-task-name').value = '';
-            document.getElementById('edit-date').value = '';
-            editingIndex = -1;
-
-            // Hide the edit form
-            toggleForm('edit-form');
-
-            // Update the task list display
             displayTasks();
-
-            // Notify about the update
             notify(taskName, dateValue, true);
+            toggleForm('edit-form');
+        }
+
+        // Display tasks on the page
+        function displayTasks() {
+            const tasksContainer = document.getElementById('tasks-container');
+            tasksContainer.innerHTML = '';
+            tasks.forEach((task, index) => {
+                const taskDiv = document.createElement('div');
+                taskDiv.classList.add('todo-item');
+                taskDiv.innerHTML = `
+                    <span>${task.name} - Due: ${new Date(task.date).toLocaleString()}</span>
+                    <div>
+                        <button onclick="editTask(${index})">Edit</button>
+                        <button onclick="removeTask(${index})">Delete</button>
+                    </div>
+                `;
+                tasksContainer.appendChild(taskDiv);
+            });
         }
     </script>
 </body>
+
 </html>

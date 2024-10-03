@@ -21,6 +21,10 @@ li a:hover {
     background-color: #333;
     text-decoration-line: overline;
 }
+#alert-text{
+    display: none ;
+    border:1.5px solid red;
+}
 #task{
     margin-top: 20px;
     border: 1.5px solid red;

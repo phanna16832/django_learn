@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management Webpage</title>
+    <link rel="stylesheet" href="test.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#task-list">About</a></li>
+        </ul>
+    </nav>
+    <h1>Task Management</h1>
+    <div id="task">
+        <input type="text" id="todo-name" placeholder="Enter your task here">
+        <input type="time" id="time">
+        <select id="day">
+            <option value="" selected>Select a day</option>
+            <option value="weekday">weekday</option>
+            <option value="weekend">weekend</option>
+            <option value="selected-day">Select specific date</option>
+        </select>
+        <div id="specific-date-container" style="display: none;">
+            <input type="date" id="specific-date">
+        </div>
+        <div id="add-task">
+            <button onclick="addTask()">Add Task</button>
+        </div>
+    </div>
+    <div id="task-list" class="task-list"></div>
+
+    <script src="test.js"></script>
+</body>
+</html>

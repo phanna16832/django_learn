@@ -1,0 +1,46 @@
+nav {
+    background-color: black;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+li {
+    float: left;
+}
+li a {
+    display: block;
+    color: pink;
+    text-decoration: none;
+    padding: 14px;
+    text-align: center;
+}
+li a:hover {
+    background-color: #333;
+    text-decoration-line: overline;
+}
+#task{
+    margin-top: 20px;
+    border: 1.5px solid red;
+    border-radius: 4px;
+    text-align: center;
+}
+#task input{
+    margin-top: 30px;
+    width: 80%;
+    padding: 5px;
+}
+
+#task button {
+    border: none;
+    color: red;
+    display: block;
+    margin-left: 0;
+    margin-bottom: 10px;
+}
+
+#add-task {
+    margin-top: 10px;
+}

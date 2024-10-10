@@ -54,6 +54,10 @@ header {
 header #notifyBtn {
 margin-left: 20%;
 }
+header .greeting{
+  margin-right: 20px;
+}
+
 
 /* Table */
 table {
@@ -147,6 +151,7 @@ input[type="number"], select {
   padding: 8px;               /* Adds padding to inputs */
   margin-bottom: 10px;        /* Adds space below inputs */
 }
+
 
 /* Optional: Responsive adjustments */
 @media (max-width: 768px) {
